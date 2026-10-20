@@ -26,6 +26,14 @@
             return true;
           }
         }, true);
+
+        // Normalize trailing slash on GitHub Pages so relative assets resolve correctly
+        if (window.location.hostname.endsWith('github.io')) {
+          var p = window.location.pathname;
+          if (!p.endsWith('/') && !p.split('/').pop().includes('.')) {
+            window.location.replace(p + '/' + window.location.search + window.location.hash);
+          }
+        }
       })();
     </script>
     <title>Buscaminas de Flx y Panda</title>
@@ -41,6 +49,23 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Fallback for static hosting (e.g. GitHub Pages root)
+      window.addEventListener('error', function(e) {
+        if (e.target && e.target.src && e.target.src.indexOf('/src/main.tsx') !== -1) {
+          var s = document.createElement('script');
+          s.type = 'module';
+          s.crossOrigin = '';
+          s.src = './assets/index.js';
+          document.body.appendChild(s);
+          var l = document.createElement('link');
+          l.rel = 'stylesheet';
+          l.crossOrigin = '';
+          l.href = './assets/index.css';
+          document.head.appendChild(l);
+        }
+      }, true);
+    </script>
   </body>
 </html>
 
