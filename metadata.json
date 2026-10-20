@@ -1,0 +1,6 @@
+{
+  "name": "AstroMines - Buscaminas Espacial",
+  "description": "Juego clásico de Buscaminas con temática espacial profunda, escáner de pulso gravitacional, balizas de antimateria y efectos sonoros sintetizados.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
